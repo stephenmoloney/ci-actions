@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -eo pipefail
+
+WORKSPACE=/ci-actions/workspace
+CURRENT_DIR=${DOCKERFILE_PATH%"/Dockerfile"}
+VERSION="$(cat ./Dockerfile  | sed -En "s/ARG VERSION=\"//p" | sed -En 's/"//p')"
+
+if [[ "$(have_files_changed)" == 'true' ]]; then
+  docker tag "${DOCKER_REPO}:latest" "${DOCKER_REPO}:${VERSION}"
+  docker push "${DOCKER_REPO}:latest"
+  docker push "${DOCKER_REPO}:${VERSION}"
+else
+  echo "No changes to the ${CURRENT_DIR} or ./common directories, push not required"
+fi

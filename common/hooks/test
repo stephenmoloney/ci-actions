@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -eo pipefail
+
+CURRENT_DIR=${DOCKERFILE_PATH%"/Dockerfile"}
+CURRENT_REPO=${DOCKER_REPO#"index.docker.io/smoloney/ci-actions-"}
+VERSION="$(cat ./Dockerfile  | sed -En "s/ARG VERSION=\"//p" | sed -En 's/"//p')"
+IMAGE="smoloney/ci-actions-${CURRENT_REPO}:latest"
+RELATIVE_PATH="./"
+HOST_VOLUME_PATH="${PWD%/*}/test/ci-${CURRENT_REPO}"
+TEST_FILE="${PWD%/*}/test/${CURRENT_REPO}_tests.sh"
+
+if [[ "$(have_files_changed)" == 'true' ]]; then
+  if [[ ! -d /tmp/shunit2 ]]; then
+    export current_dir
+    current_dir="${PWD}""
+    git clone -q https://github.com/kward/shunit2.git /tmp/shunit2 && \
+    cd /tmp/shunit2 && \
+    git checkout -q a35d3c && \
+    cd "${current_dir}" || exit;
+  fi
+
+  /tmp/shunit2/shunit2 \
+    "${TEST_FILE}" \
+    "${IMAGE}" \
+    "${RELATIVE_PATH}" \
+    "${HOST_VOLUME_PATH}" \
+    "${VERSION}"
+
+  rm -rf /tmp/shunit2
+else
+  echo "No changes to the ${CURRENT_DIR} or ./common directories, test not required"
+fi
