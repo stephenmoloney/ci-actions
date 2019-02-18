@@ -1,6 +1,8 @@
 # ci-actions-helm
-![Image Size](https://images.microbadger.com/badges/image/smoloney/ci-actions-helm.svg)
+![Image Size](https://img.shields.io/microbadger/image-size/smoloney/ci-actions-helm/latest.svg?style=flat)
 ![Image Version](https://images.microbadger.com/badges/version/smoloney/ci-actions-helm.svg)
+![License](https://img.shields.io/github/license/stephenmoloney/ci-actions.svg?style=flat-square)
+![Docker Pulls](https://img.shields.io/docker/pulls/smoloney/ci-actions-bundle.svg?style=flat)
 
 `ci-actions-helm` is part of a collection of actions
 for running github actions tasks and also running

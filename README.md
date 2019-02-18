@@ -1,5 +1,6 @@
 # ci-actions
 ![Build Status](https://img.shields.io/travis/stephenmoloney/ci-actions/master.svg?style=flat)
+![License](https://img.shields.io/github/license/stephenmoloney/ci-actions.svg?style=flat-square)
 
 ci-actions is a collection of tasks targetting ci pipelines
 
