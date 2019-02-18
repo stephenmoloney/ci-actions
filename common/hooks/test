@@ -13,7 +13,7 @@ TEST_FILE="${PWD%/*}/test/${CURRENT_REPO}_tests.sh"
 if [[ "$(have_files_changed)" == 'true' ]]; then
   if [[ ! -d /tmp/shunit2 ]]; then
     export current_dir
-    current_dir="${PWD}""
+    current_dir="${PWD}"
     git clone -q https://github.com/kward/shunit2.git /tmp/shunit2 && \
     cd /tmp/shunit2 && \
     git checkout -q a35d3c && \
