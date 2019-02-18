@@ -8,16 +8,16 @@ ARG BUILD_DATE
 ENV DOWNLOAD_URL="https://storage.googleapis.com/kubernetes-helm/helm-v${VERSION}"
 
 LABEL \
-      "com.github.actions.name"="Linting for helm templates" \
-      "com.github.actions.description"="Run`helm lint - to lint helm templates" \
-      "com.github.actions.icon"="activity" \
-      "com.github.actions.color"="blue" \
-      "repository"="https://github.com/stephenmoloney/ci-actions" \
-      "homepage"="https://github.com/stephenmoloney/ci-actions/tree/master/helm" \
-      "maintainer"="Stephen Moloney <stephen@stephenmoloney.com>" \
-      "org.label-schema.vcs-ref"="${VCS_REF}" \
-      "org.label-schema.vcs-url"="https://github.com/stephenmoloney/ci-actions" \
-      "org.label-schema.build-date"="${BUILD_DATE}"
+      # https://github.com/opencontainers/image-spec/blob/master/annotations.md
+      "org.opencontainers.image.created"="${BUILD_DATE}" \
+      "org.opencontainers.image.authors"="Stephen Moloney <stephen@stephenmoloney.com>" \
+      "org.opencontainers.image.homepage"="https://github.com/stephenmoloney/ci-actions/tree/master/helm" \
+      "org.opencontainers.image.documentation"="https://github.com/stephenmoloney/ci-actions/tree/master/helm/README.md" \
+      "org.opencontainers.image.source"="https://github.com/stephenmoloney/ci-actions" \
+      "org.opencontainers.image.version"="ci-actions at ${VCS_REF} and helm client version ${VERSION}" \
+      "org.opencontainers.image.revision"="${VCS_REF}" \
+      "org.opencontainers.image.title"="ci-actions-helm-lint" \
+      "org.opencontainers.image.description"="Helm client binary in a docker container for linting helm templates"
 
 COPY *.sh /entrypoint/
 
