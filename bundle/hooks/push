@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -eo pipefail
+
+source ../common/functions.sh
+
+WORKSPACE=/ci-actions/workspace
+CURRENT_DIR=${DOCKERFILE_PATH%"/Dockerfile"}
+VERSION="$(cat ./Dockerfile  | sed -En "s/ARG VERSION=\"//p" | sed -En 's/"//p')"
+
+docker tag "${DOCKER_REPO}:latest" "${DOCKER_REPO}:${VERSION}"
+docker push "${DOCKER_REPO}:latest"
+docker push "${DOCKER_REPO}:${VERSION}"
+
