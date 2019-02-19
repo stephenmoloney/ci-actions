@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -eo pipefail
+
+source ../common/functions.sh
+source ../common/hooks/push

@@ -4,7 +4,7 @@
 ![Image Version](https://images.microbadger.com/badges/version/smoloney/ci-actions-prettier.svg)
 ![Docker Pulls](https://img.shields.io/docker/pulls/smoloney/ci-actions-prettier.svg?style=flat)
 
-`ci-actions-prettier` is an action for linting and/or formatting files of various types 
+`ci-actions-prettier` is an action for linting and/or formatting files types 
 including typescript, css, scss, json, graphql, markdown, yaml, html and others.
 
 The image is available on the
@@ -19,9 +19,9 @@ These examples are of using prettier as a linting tool:
 
 ### Github actions workflow example
 
-```
+```text
 action "prettier-yaml-lint" {
-  uses = "stephenmoloney/ci-actions/prettier/@master"
+  uses = "stephenmoloney/ci-actions/prettier@master"
   args = [
           "--exclude='./k8s/charts'",
           "--file-glob='*.y*ml'",
@@ -41,7 +41,6 @@ docker run --rm -v "${PWD}":/ci-actions/workspace:ro smoloney/ci-actions-prettie
 
 ## Arguments
 
-
 ```text
 Usage:
 docker run \
@@ -55,30 +54,30 @@ Options:
   --file-glob  file types to be inspected (eg, '*.y*ml')
 ```
 
-#### Arguments - exclusion paths
+### Arguments - exclusion paths
 
 To exclude paths, enter them as follows:
 
-```
+```shell
 --exclude='./k8s/test-charts' --exclude='.prettierrc.yml'
 ```
 
-#### Arguments - executable arguments
+### Arguments - executable arguments
 
 The exec-args string which will be passed directly as arguments to
 the `prettier` command. Check `prettier --help` for more
 information.
 
-```
+```shell
 --exec-args='prettier --check --parser yaml --config ./.prettierrc.yml'
 ```
 
-#### Arguments - file glob
+### Arguments - file glob
 
 The `entrypoint.sh` script will attempt to gather all the files
 with the argument from `--file-glob` using the `find` command.
 
-```
+```shell
 --file-glob='*.y*ml'
 ```
 
