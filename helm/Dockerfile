@@ -19,10 +19,10 @@ LABEL \
       "org.opencontainers.image.title"="ci-actions-helm" \
       "org.opencontainers.image.description"="Helm client binary in a docker container for linting helm templates"
 
-COPY *.sh /entrypoint/
-
 RUN \
     apk add --no-cache bash='4.4.19-r1' curl='7.63.0-r0' dpkg='1.19.2-r0'
+
+COPY *.sh /entrypoint/
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \
