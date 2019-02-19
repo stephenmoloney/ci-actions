@@ -9,4 +9,5 @@ if [[ ! -d /tmp/shunit2 ]]; then
   cd "${current_dir}" || exit;
 fi
 
-/tmp/shunit2/shunit2 test/helm_tests.sh
+/tmp/shunit2/shunit2 test/helm_tests.sh && \
+/tmp/shunit2/shunit2 test/prettier_tests.sh

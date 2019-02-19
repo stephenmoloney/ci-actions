@@ -11,22 +11,14 @@ VERSION="${VERSION:-2.12.3}"
 WORKSPACE=${6}
 WORKSPACE="${WORKSPACE:-/ci-actions/workspace}"
 
-test_path() {
-  local relative_path
-  local test_path
-  relative_path="${1}"
-
-  if [ "${relative_path}" = "./helm" ]; then
-    test_path="${PWD}/test"
-  else
-    test_path="${PWD%/*}/test"
-  fi
-
-  echo -n "${test_path}"
-}
+if [ "${RELATIVE_PATH}" = "./helm" ]; then
+  TEST_PATH="${PWD}/test"
+else
+  TEST_PATH="${PWD%/*}/test"
+fi
 
 oneTimeSetUp() {
-  "$(test_path "${RELATIVE_PATH}")/setup.sh" \
+  "${TEST_PATH}/common/setup.sh" \
     "${IMAGE}" \
     "${RELATIVE_PATH}" \
     "${VERSION}" \
@@ -34,7 +26,7 @@ oneTimeSetUp() {
 }
 
 oneTimeTearDown() {
-  "$(test_path "${RELATIVE_PATH}")/tear_down.sh" \
+  "${TEST_PATH}/common/tear_down.sh" \
     "${IMAGE}"
 }
 
