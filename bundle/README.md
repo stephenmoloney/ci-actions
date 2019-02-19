@@ -1,7 +1,7 @@
 # ci-actions-bundle
+![License](https://img.shields.io/github/license/stephenmoloney/ci-actions.svg?style=flat-square)
 ![Image Size](https://images.microbadger.com/badges/image/smoloney/ci-actions-bundle.svg)
 ![Image Version](https://images.microbadger.com/badges/version/smoloney/ci-actions-bundle.svg)
-![License](https://img.shields.io/github/license/stephenmoloney/ci-actions.svg?style=flat-square)
 ![Docker Pulls](https://img.shields.io/docker/pulls/smoloney/ci-actions-bundle.svg?style=flat)
 
 `ci-actions-bundle` is an image bundled with a collection of actions. This image is 

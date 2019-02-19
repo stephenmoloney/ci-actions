@@ -7,7 +7,9 @@ show_changed_files() {
 
   echo "The following files were changed in the most recent commit: "
   readarray -t changed_files <<< "$(git diff HEAD~1 --name-only)"
-  echo "${changed_files[@]}"
+  for changed_file in "${changed_files[@]}"; do
+    echo "${PWD%/*}/${changed_file}"
+  done
 }
 
 have_files_changed() {
@@ -18,12 +20,12 @@ have_files_changed() {
 
   file_match='false'
   readarray -t changed_files <<< "$(git diff HEAD~1 --name-only)"
-  readarray -t local_files <<< "$(find ./)"
-  readarray -t common_files <<< "$(find ../common)"
+  readarray -t local_files <<< "$(find "${PWD}")"
+  readarray -t common_files <<< "$(find ${PWD%/*}/common)"
 
   for local_file in "${local_files[@]}"; do
     for changed_file in "${changed_files[@]}"; do
-      if [[ "${local_file}" -ef "${changed_file}" ]]; then
+      if [[ "${local_file}" -ef "${PWD%/*}/${changed_file}" ]]; then
         file_match='true'
       fi
     done
@@ -31,7 +33,7 @@ have_files_changed() {
 
   for common_file in "${common_files[@]}"; do
     for changed_file in "${changed_files[@]}"; do
-      if [[ "${common_file}" -ef "../${changed_file}" ]]; then
+      if [[ "${common_file}" -ef "${PWD%/*}/${changed_file}" ]]; then
         file_match='true'
       fi
     done

@@ -9,11 +9,17 @@ links to the readme of the specific action.
 
 ## Linting
 
-| Linting Package                                                                  | Purpose                           | Dockerhub Image Name                                                                     | Recent Image Tags          |
-| -------------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------------------------------- | -------------------------- |
-| [helm](https://github.com/stephenmoloney/ci-actions/tree/master/helm/README.md)  | For linting helm templates        | [smoloney/ci-actions-helm](https://hub.docker.com/r/smoloney/ci-actions-helm)            | `latest`, `0.16.0`         | 
+| Linting Package                                                                          | Purpose                           | Dockerhub Image Name                                                                     | Recent Image Tags          |
+| ---------------------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------------------------------- | -------------------------- |
+| [helm](https://github.com/stephenmoloney/ci-actions/tree/master/helm/README.md)          | For linting helm templates        | [smoloney/ci-actions-helm](https://hub.docker.com/r/smoloney/ci-actions-helm)            | `latest`, `2.12.3`         | 
+| [prettier](https://github.com/stephenmoloney/ci-actions/tree/master/prettier/README.md)  | For linting various file types    | [smoloney/ci-actions-prettier](https://hub.docker.com/r/smoloney/ci-actions-prettier)    | `latest`, `1.16.4`         | 
 
 ## Formatting
+
+| Formatting Package                                                                       | Purpose                           | Dockerhub Image Name                                                                     | Recent Image Tags          |
+| ---------------------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------------------------------- | -------------------------- |
+| [prettier](https://github.com/stephenmoloney/ci-actions/tree/master/prettier/README.md)  | For formatting various file types | [smoloney/ci-actions-prettier](https://hub.docker.com/r/smoloney/ci-actions-prettier)    | `latest`, `1.16.4`         | 
+
 
 ## Tests
 

@@ -16,7 +16,7 @@ LABEL \
       "org.opencontainers.image.source"="https://github.com/stephenmoloney/ci-actions" \
       "org.opencontainers.image.version"="ci-actions at ${VCS_REF} and helm client version ${VERSION}" \
       "org.opencontainers.image.revision"="${VCS_REF}" \
-      "org.opencontainers.image.title"="ci-actions-helm-lint" \
+      "org.opencontainers.image.title"="ci-actions-helm" \
       "org.opencontainers.image.description"="Helm client binary in a docker container for linting helm templates"
 
 COPY *.sh /entrypoint/
@@ -46,8 +46,7 @@ RUN \
     rm "helm-v${VERSION}-${os}-${arch}.tar.gz.sha256" && \
     helm init --client-only && \
     chmod +x /entrypoint/*.sh && \
-    apk del curl dpkg && \
-    rm -rf /var/cache/apk/*
+    apk del curl dpkg
 
 WORKDIR ${WORKSPACE}
 ENTRYPOINT ["/entrypoint/entrypoint.sh"]
