@@ -33,10 +33,8 @@ action "prettier-yaml-lint" {
 ### Gitlab-CI workflow example
 
 ```bash
-docker run --rm -v "${PWD}":/ci-actions/workspace \
-  smoloney/ci-actions-prettier:1.16.4 \
-  --exclude='./test/ci-yaml-lint-test/ignore-dir' \
-  --exclude='./test/ci-yaml-lint-test/ignore-fail.yaml' \
+docker run --rm -v "${PWD}":/ci-actions/workspace:ro smoloney/ci-actions-prettier:1.16.4 \
+  --exclude='./test' \
   --file-glob='*.y*ml' \
   --exec-args='prettier --check --parser yaml --config ./.prettierrc.yml'
 ```

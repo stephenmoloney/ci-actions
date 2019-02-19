@@ -21,12 +21,12 @@ LABEL \
       "org.opencontainers.image.title"="ci-actions-bundle" \
       "org.opencontainers.image.description"="An image bundled with helm lint, capabilities"
 
+RUN \
+    apk add --no-cache bash='4.4.19-r1' ca-certificates='20190108-r0'
+
 COPY *.sh /entrypoint/
 COPY --from=smoloney/ci-actions-helm:2.12.3 /linux-amd64/LICENSE /licenses/helm/
 COPY --from=smoloney/ci-actions-helm:2.12.3 /usr/local/bin/helm /usr/local/bin/helm
-
-RUN \
-    apk add --no-cache bash='4.4.19-r1' ca-certificates='20190108-r0'
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \

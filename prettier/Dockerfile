@@ -17,10 +17,10 @@ LABEL \
       "org.opencontainers.image.title"="ci-actions-prettier" \
       "org.opencontainers.image.description"="Prettier in a docker container for linting and formatting various files types"
 
-COPY *.sh /entrypoint/
-
 RUN \
     apk add --no-cache bash='4.4.19-r1' nodejs-current='11.3.0-r0' npm='10.14.2-r0'
+
+COPY *.sh /entrypoint/
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \

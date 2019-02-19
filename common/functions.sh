@@ -56,9 +56,9 @@ get_excluded_args() {
   else
     for path in "${exclude[@]}"; do
       if [[ -d "${path}" ]]; then
-        excluded_dirs+="-not ( -path ${path} -prune )"
+        excluded_dirs+=" -not ( -path ${path} -prune )"
       elif [[ -e "${path}" ]]; then
-        excluded_paths+="-not -path ${path}"
+        excluded_paths+=" -not -path ${path}"
       fi
     done
 
