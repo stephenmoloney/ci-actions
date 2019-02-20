@@ -4,11 +4,6 @@ set -eo pipefail
 
 source ../common/functions.sh
 
-
-#!/bin/bash
-
-set -eo pipefail
-
 WORKSPACE=/ci-actions/workspace
 CURRENT_DIR=${DOCKERFILE_PATH%"/Dockerfile"}
 

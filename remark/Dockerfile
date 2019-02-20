@@ -82,9 +82,10 @@ LABEL \
       "org.opencontainers.image.description"="remark in a docker container for linting markdown"
 
 RUN \
-    apk add --no-cache bash='4.4.19-r1' nodejs-current='11.3.0-r0' npm='10.14.2-r0'
-
-COPY *.sh /entrypoint/
+    apk add --no-cache \
+      bash='4.4.19-r1' \
+      nodejs-current='11.3.0-r0' \
+      npm='10.14.2-r0'
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \
@@ -93,8 +94,11 @@ RUN \
       remark-cli@6.0.1 \
       remark-lint@"${VERSION}" \
       ${REMARK_PLUGINS} && \
-    chmod +x /entrypoint/*.sh && \
     apk del npm
+
+COPY *.sh /entrypoint/
+RUN \
+    chmod +x /entrypoint/*.sh
 
 WORKDIR ${WORKSPACE}
 ENTRYPOINT ["/entrypoint/entrypoint.sh"]
