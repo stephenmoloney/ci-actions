@@ -22,8 +22,6 @@ LABEL \
 RUN \
     apk add --no-cache bash='4.4.19-r1' curl='7.63.0-r0' dpkg='1.19.2-r0'
 
-COPY *.sh /entrypoint/
-
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \
     export os && \
@@ -45,8 +43,11 @@ RUN \
     rm "helm-v${VERSION}-${os}-${arch}.tar.gz" && \
     rm "helm-v${VERSION}-${os}-${arch}.tar.gz.sha256" && \
     helm init --client-only && \
-    chmod +x /entrypoint/*.sh && \
     apk del curl dpkg
+
+COPY *.sh /entrypoint/
+RUN \
+    chmod +x /entrypoint/*.sh
 
 WORKDIR ${WORKSPACE}
 ENTRYPOINT ["/entrypoint/entrypoint.sh"]

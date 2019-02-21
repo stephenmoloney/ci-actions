@@ -8,7 +8,7 @@ CURRENT_DIR=${DOCKERFILE_PATH%"/Dockerfile"}
 CURRENT_REPO=${DOCKER_REPO#"index.docker.io/smoloney/ci-actions-"}
 IMAGE="smoloney/ci-actions-${CURRENT_REPO}:latest"
 RELATIVE_PATH="./"
-BUNDLED_REPOS=(helm)
+BUNDLED_REPOS=(helm prettier remark)
 
 if [[ ! -d /tmp/shunit2 ]]; then
   export current_dir
@@ -31,4 +31,3 @@ for bundled_repo in "${BUNDLED_REPOS[@]}"; do
 done
 
 rm -rf /tmp/shunit2
-
